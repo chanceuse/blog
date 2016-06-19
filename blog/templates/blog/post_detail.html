@@ -16,23 +16,47 @@
 				            {% else %}
             <a href="{% url 'django.contrib.auth.views.login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
 			{% endif %}
+			<!-- <script>
+         window.fbAsyncInit = function() {
+         FB.init({
+         appId      : '1140931979304502',
+         xfbml      : true,
+         version    : 'v2.5'
+         });
+        };
+
+        (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+        </script>-->
             <h1>{{ post.title }}</h1>
             <p>{{ post.text|linebreaks }}</p>
         </div>
 	<hr>
 <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>	
 {% for comment in post.comments.all %}
-    {% if user.is_authenticated or comment.approved_comment %}
+    {% if user.is_authenticated %}
     <div class="comment">
         <div class="date">
             {{ comment.created_date }}
-            {% if not comment.approved_comment %}
                 <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-                <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span></a>
-            {% endif %}
         </div>
         <strong>{{ comment.author }}</strong>
         <p>{{ comment.text|linebreaks }}</p>
+		
+    </div>
+	 {% else %}
+	     <div class="comment">
+        <div class="date">
+            {{ comment.created_date }}
+        </div>
+        <strong>{{ comment.author }}</strong>
+        <p>{{ comment.text|linebreaks }}</p>
+		
     </div>
     {% endif %}
 {% empty %}

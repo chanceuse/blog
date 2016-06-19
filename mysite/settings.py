@@ -10,6 +10,20 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
+FACEBOOK_APP_ID = '1140931979304502'
+FACEBOOK_API_SECRET = '599486b7466d404475a486a858bb50a9'
+
+VK_APP_ID = '5324081'
+VKONTAKTE_APP_ID = VK_APP_ID
+VK_API_SECRET = 'StBy4pWHGlzaNkaiGQjE'
+VKONTAKTE_APP_SECRET = VK_API_SECRET
+
+GOOGLE_OAUTH2_CLIENT_ID = '389992661725-rq8tcm8olnkkddd92f1l7vlj4426hiof.apps.googleusercontent.com'
+GOOGLE_OAUTH2_CLIENT_SECRET = 'fxlFRF8-ysZtnOrH_aTVBp_o'
+
+GITHUB_APP_ID = 'b92e6311d2dad6ba2e4a'
+GITHUB_API_SECRET = '0fedfdd4531e971bbc4d889e4f99fa46318387b2'
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
@@ -53,6 +67,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'mysite.urls'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -63,11 +78,13 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+				'django.core.context_processors.request',
+                
             ],
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
